@@ -1,0 +1,57 @@
+import BaseUrl from "@/Api/BaseUrl";
+import HeroBanner from "@/components/heroBanner/heroBanner";
+import ProductCard from "@/components/ProductCard/productCard";
+import TProduct from "@/type/type";
+
+
+export default async function Home() {
+  const res = await fetch(`${BaseUrl}/products`)
+  const data : TProduct[] = await res.json()
+
+
+
+  const priceIncrease = data.filter(product => product.today > product.yesterday)
+  const priceDecrease = data.filter(product => product.today < product.yesterday)
+
+  return (
+   <div className="container mx-auto">
+   <HeroBanner></HeroBanner>
+   {/* PriceIncrease */}
+   <div>
+    <p className="font-bold text-2xl my-10"> <span className="text-red-600" >▲</span> আজ দাম বেড়েছে</p>
+   <div className="grid grid-cols-3 gap-3 mt-5">
+     {
+      priceIncrease.slice(1,7).map(product => <ProductCard key={product.id} product = {product}></ProductCard>)
+    }
+   </div>
+   </div>
+
+
+   {/* Price Decress */}
+
+   <div>
+    
+    <p className="font-bold text-2xl my-10"> <span className="text-green-600" >▲</span> আজ দাম কমেছে</p>
+
+   <div className="grid grid-cols-3 gap-3 mt-5">
+     {
+      priceDecrease.slice(1,7).map(product => <ProductCard key={product.id} product = {product}></ProductCard>)
+    }
+   </div>
+   </div>
+
+   {/* All Product */}
+
+   <div>
+    <p className="font-bold">সব পণ্য</p>
+    <p className="text-base-content">মোট {data.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
+
+    <div className="grid grid-cols-3 gap-3 mt-5">
+     {
+      data.map(product => <ProductCard key={product.id} product = {product}></ProductCard>)
+    }
+   </div>
+   </div>
+   </div>
+  );
+}

@@ -1,6 +1,7 @@
 
 import BaseUrl from '@/Api/BaseUrl';
 import TProduct from '@/type/type';
+import Link from 'next/link';
 import React from 'react';
 import MarqueeText from 'react-marquee-text';
 
@@ -39,8 +40,9 @@ const Marquee = async () => {
             units[product.unit.toLowerCase()] ?? product.unit;
 
           return (
+            <Link key={product.id} href={`/productDietels/${product.id}`}>
             <div
-              key={product.id}
+              
               className="mx-6 flex items-center gap-2 whitespace-nowrap"
             >
               <span>{product.categoryIcon}</span>
@@ -64,6 +66,7 @@ const Marquee = async () => {
                 {product.change.pct.toLocaleString('bn-BD')}%
               </span>
             </div>
+            </Link>
           );
         })}
       </MarqueeText>

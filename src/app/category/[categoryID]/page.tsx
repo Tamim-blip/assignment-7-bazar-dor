@@ -7,12 +7,23 @@ const CategoryProducts = async({params}: { params: Promise<{ categoryID: string 
     const {categoryID} = await params
      const res = await fetch(`${BaseUrl}/products?category=${categoryID}`)
      const data : TProduct[] = await res.json()
-     console.log(data)
+      
+     const oneProduct = data[0]
     return (
-        <div className='container mx-auto grid grid-cols-3 gap-3'>
+        <div className='container mx-auto'>
+            <div className='flex gap-4 items-center p-5 rounded-2xl my-10 bg-base-200'>
+                <p className='text-7xl'>{oneProduct.categoryIcon}</p>
+                <div>
+                    <p className='font-bold text-2xl'>{oneProduct.categoryNameBn}</p>
+                    <p className='text-sm text-base-content'>{data.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
+                </div>
+
+            </div>
+            <div className=' grid grid-cols-3 gap-3'>
            {
             data.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
            }
+        </div>
         </div>
     );
 };

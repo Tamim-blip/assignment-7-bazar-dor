@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBarPage from "@/components/navBar/Nav";
 import NavLinks from "@/components/navBar/navLinks";
 import Marquee from "@/components/navBar/marquee";
+import Footer from "@/components/footer/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div>
           {children}
         </div>
+        <Footer></Footer>
       </body>
     </html>
   );

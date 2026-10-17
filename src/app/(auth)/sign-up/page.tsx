@@ -1,7 +1,48 @@
-
+'use client'
+import { signIn, signUp } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export default function SignUp() {
+    const HandleSignUp = async(e: React.FormEvent<HTMLFormElement>) => {
+
+        e.preventDefault()
+
+        const formData = new FormData(e.currentTarget);
+        const userData = Object.fromEntries(formData.entries())
+
+        const {data, error} = await signUp.email({
+            name : userData.name as string,
+            email : userData.email as string,
+            password : userData.password as string,
+            callbackURL : '/'
+        })
+
+        if(data) {
+            toast.success("Sign Up successful")
+            redirect('/')
+        }
+
+        if(error){
+          toast.error(error.message ?? 'Sign up failed')
+        }
+
+    }
+
+
+    const HandleGoogleSignIn = async () => {
+
+        await signIn.social({
+            provider : "google"
+        })
+    }
+
+    const HandleGitHubSignIn = async () => [
+        await signIn.social({
+            provider : "github"
+        })
+    ]
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4 py-10">
       <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
@@ -14,7 +55,7 @@ export default function SignUp() {
           </p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={HandleSignUp} className="space-y-4">
           <div>
             <label
               htmlFor="signup-name"
@@ -25,6 +66,7 @@ export default function SignUp() {
             <input
               id="signup-name"
               type="text"
+              name='name'
               placeholder="যেমন: রহিম উদ্দিন"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
@@ -40,6 +82,7 @@ export default function SignUp() {
             <input
               id="signup-email"
               type="email"
+              name='email'
               placeholder="you@example.com"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
@@ -55,6 +98,7 @@ export default function SignUp() {
             <input
               id="signup-password"
               type="password"
+              name='password'
               placeholder="কমপক্ষে ৮ অক্ষর"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
@@ -95,6 +139,7 @@ export default function SignUp() {
 
         <div className="space-y-3">
           <button
+          onClick={HandleGoogleSignIn}
             type="button"
             className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
@@ -109,6 +154,7 @@ export default function SignUp() {
 
           <button
             type="button"
+            onClick={HandleGitHubSignIn}
             className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">

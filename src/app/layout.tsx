@@ -5,7 +5,8 @@ import NavBarPage from "@/components/navBar/Nav";
 import NavLinks from "@/components/navBar/navLinks";
 import Marquee from "@/components/navBar/marquee";
 import Footer from "@/components/footer/page";
-import { Suspense } from "react";
+import { Toaster } from "react-hot-toast";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </div>
         <Footer></Footer>
+        <Toaster />
       </body>
     </html>
   );

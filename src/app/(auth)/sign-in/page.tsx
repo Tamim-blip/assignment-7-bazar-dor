@@ -1,7 +1,46 @@
+'use client'
+import { signIn } from '@/lib/auth-client';
 
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 export default function SignIn() {
+
+  const HandleSignIn =async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    const userData  = Object.fromEntries(formData.entries())
+
+    const {data, error} = await signIn.email({
+      email : userData.email as string,
+      password : userData.password as string,
+      callbackURL : '/'
+    })
+
+    console.log(data,error)
+
+    if(data){
+      toast.success("Sign In successful")
+    }
+
+    if(error){
+          toast.error(error.message || "Something went wrong");
+        }
+  }
+
+  const HandleGoogleSignIn = async () => {
+    await signIn.social({
+      provider : "google"
+    })
+  }
+
+
+  const HandleGitHubSignIn = async () => {
+    await signIn.social({
+      provider : "github"
+    })
+  }
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4 py-10">
       <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
@@ -14,7 +53,7 @@ export default function SignIn() {
           </p>
         </div>
 
-        <form className="space-y-5">
+        <form onSubmit={HandleSignIn} className="space-y-5">
           <div>
             <label
               htmlFor="signin-email"
@@ -24,9 +63,11 @@ export default function SignIn() {
             </label>
             <input
               id="signin-email"
+              name='email'
               type="email"
               placeholder="you@example.com"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              
             />
           </div>
 
@@ -45,6 +86,7 @@ export default function SignIn() {
             <input
               id="signin-password"
               type="password"
+              name='password'
               placeholder="কমপক্ষে ৮ অক্ষর"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
@@ -69,6 +111,7 @@ export default function SignIn() {
         <div className="space-y-3">
           <button
             type="button"
+            onClick={HandleGoogleSignIn}
             className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 48 48" className="h-5 w-5">
@@ -82,6 +125,7 @@ export default function SignIn() {
 
           <button
             type="button"
+            onClick={HandleGitHubSignIn}
             className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">

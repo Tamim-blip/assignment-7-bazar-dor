@@ -26,8 +26,12 @@ const NavBarPage = () => {
             </Link>
 
             <div className='flex gap-2'>
+               <Link href={'/sign-in'}>
                 <button className='btn'>সাইন ইন</button>
+               </Link>
+               <Link href={'/sign-up'}>
                 <button className='btn btn-success'>সাইন আপ</button>
+               </Link>
             </div>
             
         </div>

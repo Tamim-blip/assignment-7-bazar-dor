@@ -1,5 +1,6 @@
 import BaseUrl from '@/Api/BaseUrl';
-import ProductCard from '@/components/ProductCard/productCard';
+
+import SortedPage from '@/components/sortProducts/pase';
 import TProduct from '@/type/type';
 import React from 'react';
 
@@ -17,13 +18,8 @@ const CategoryProducts = async({params}: { params: Promise<{ categoryID: string 
                     <p className='font-bold text-2xl'>{oneProduct.categoryNameBn}</p>
                     <p className='text-sm text-base-content'>{data.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
                 </div>
-
-            </div>
-            <div className=' grid grid-cols-3 gap-3'>
-           {
-            data.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
-           }
-        </div>
+                 </div>
+<SortedPage product = {data}></SortedPage>
         </div>
     );
 };

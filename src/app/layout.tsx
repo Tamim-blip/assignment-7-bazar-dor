@@ -5,6 +5,7 @@ import NavBarPage from "@/components/navBar/Nav";
 import NavLinks from "@/components/navBar/navLinks";
 import Marquee from "@/components/navBar/marquee";
 import Footer from "@/components/footer/page";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +29,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-base-100">
-        <NavBarPage></NavBarPage>
-        <NavLinks></NavLinks>
+        
+      
+        
+          <NavBarPage></NavBarPage>
+
+          <NavLinks></NavLinks>
         <Marquee></Marquee>
         <div>
           {children}

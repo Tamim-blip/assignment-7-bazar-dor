@@ -6,7 +6,7 @@ import TProduct from '@/type/type';
 
 const SortedPage = ({ product }: { product: TProduct[] }) => {
   const [sortBy, setSortBy] = useState<
-    'বেশি দাম' | 'কম দাম' | 'সমান দাম' | 'ডিফল্ট'
+    'বেশি দাম' | 'কম দাম'  | 'ডিফল্ট'
   >('ডিফল্ট');
 
   const sortedProducts = [...product].sort((a, b) => {
@@ -18,9 +18,7 @@ const SortedPage = ({ product }: { product: TProduct[] }) => {
       return a.today - b.today;
     }
 
-    if (sortBy === 'সমান দাম') {
-      return 0;
-    }
+    
 
     return 0;
   });
@@ -39,7 +37,6 @@ const SortedPage = ({ product }: { product: TProduct[] }) => {
                   e.target.value as
                     | 'বেশি দাম'
                     | 'কম দাম'
-                    | 'সমান দাম'
                     | 'ডিফল্ট'
                 )
               }
@@ -48,7 +45,7 @@ const SortedPage = ({ product }: { product: TProduct[] }) => {
               <option value="ডিফল্ট">ডিফল্ট</option>
               <option value="বেশি দাম">বেশি দাম</option>
               <option value="কম দাম">কম দাম</option>
-              <option value="সমান দাম">সমান দাম</option>
+             
             </select>
           </div>
         </fieldset>

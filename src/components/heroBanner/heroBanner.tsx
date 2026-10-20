@@ -1,10 +1,21 @@
+'use client'
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const HeroBanner = () => {
-    const date = new Date().toLocaleDateString("bn-BD",{
+
+    const [date, setDate] = useState('')
+
+    useEffect(() => {
+        const date = new Date().toLocaleDateString("bn-BD",{
         dateStyle : "full"
     })
+
+    setDate(date)
+
+    }, [])
+    
     return (
         <div className='container mx-auto bg-base-300 p-5 rounded-2xl mt-15 flex justify-between '>
             <div className='mt-5'>

@@ -45,7 +45,7 @@ const Marquee = async () => {
               
               className="mx-6 flex items-center gap-2 whitespace-nowrap"
             >
-              <span>{product.categoryIcon}</span>
+              <span>{product.image}</span>
 
               <span className="font-medium text-gray-800">
                 {product.nameBn}

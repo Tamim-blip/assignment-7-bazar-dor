@@ -6,6 +6,7 @@ import NavLinks from "@/components/navBar/navLinks";
 import Marquee from "@/components/navBar/marquee";
 import Footer from "@/components/footer/page";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
 
 const geistSans = Geist({
@@ -33,9 +34,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         
       
         
+        
           <NavBarPage></NavBarPage>
-
-          <NavLinks></NavLinks>
+          <Suspense fallback={<div className="h-14 animate-pulse bg-base-200" />}>
+  <NavLinks />
+</Suspense>
         <Marquee></Marquee>
         <div>
           {children}

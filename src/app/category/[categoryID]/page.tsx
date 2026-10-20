@@ -6,7 +6,7 @@ import React from 'react';
 
 const CategoryProducts = async({params}: { params: Promise<{ categoryID: string }> }) => {
     const {categoryID} = await params
-     const res = await fetch(`${BaseUrl}/products?category=${categoryID}`)
+     const res = await fetch(`${BaseUrl}/products?category=${categoryID}`,{cache: "force-cache"})
      const data : TProduct[] = await res.json()
       
      const oneProduct = data[0]

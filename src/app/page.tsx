@@ -28,11 +28,11 @@ async function ProductSections() {
     <>
       {/* Price Increase */}
       <div>
-        <p className="font-bold text-2xl my-10">
+        <p className="font-bold text-xl sm:text-2xl my-6 sm:my-10">
           <span className="text-red-600">▲</span> আজ দাম বেড়েছে
         </p>
 
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-4 sm:mt-5">
           {priceIncrease.slice(1, 8).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -41,11 +41,11 @@ async function ProductSections() {
 
       {/* Price Decrease */}
       <div>
-        <p className="font-bold text-2xl my-10">
+        <p className="font-bold text-xl sm:text-2xl my-6 sm:my-10">
           <span className="text-green-600">▼</span> আজ দাম কমেছে
         </p>
 
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-4 sm:mt-5">
           {priceDecrease.slice(1, 9).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -54,14 +54,17 @@ async function ProductSections() {
 
       {/* All Products */}
       <div>
-        <div className="my-10">
-          <p className="font-bold text-2xl">সব পণ্য</p>
-          <p className="text-sm text-base-content">
+        <div className="my-6 sm:my-10">
+          <p className="font-bold text-xl sm:text-2xl">
+            সব পণ্য
+          </p>
+
+          <p className="text-sm text-base-content mt-1">
             মোট {data.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mt-4 sm:mt-5">
           {data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -73,12 +76,12 @@ async function ProductSections() {
 
 export default function Home() {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto w-full px-3 sm:px-4">
       <HeroBanner />
 
       <Suspense
         fallback={
-          <div className="py-10 text-center">
+          <div className="py-10 text-center text-sm sm:text-base">
             পণ্যের তথ্য লোড হচ্ছে...
           </div>
         }

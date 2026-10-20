@@ -1,4 +1,3 @@
-
 import TProduct from '@/type/type';
 import Link from 'next/link';
 import React from 'react';
@@ -17,20 +16,17 @@ const unitBn: Record<string, string> = {
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
     <div>
-    
-       <Link href={`/productDietels/${product.id}`}>
-        <div
-          className="bg-base-200 p-4 rounded-2xl transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-          key={product.id}
-        >
+      <Link href={`/productDietels/${product.id}`}>
+        <div className="bg-base-200 p-4 rounded-2xl">
           <div className="flex gap-3 items-center">
             <p className="text-3xl">{product.image}</p>
 
             <div>
-              <p className="font-semibold text-base-content">
+              <p className="font-semibold text-base text-base-content">
                 {product.nameBn}
               </p>
-              <p className="text-sm text-base-content/60">
+
+              <p className="text-sm text-base-content/60 mt-1">
                 প্রতি {unitBn[product.unit] || product.unit}
               </p>
             </div>
@@ -70,8 +66,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             </div>
           </div>
         </div>
-       </Link>
-   
+      </Link>
     </div>
   );
 };

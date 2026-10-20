@@ -5,7 +5,6 @@ import Link from 'next/link';
 import React from 'react';
 import MarqueeText from 'react-marquee-text';
 
-
 const units: Record<string, string> = {
   kg: 'কেজি',
   litre: 'লিটার',
@@ -19,12 +18,9 @@ const units: Record<string, string> = {
 };
 
 const Marquee = async () => {
-  const res = await fetch(
-    `${BaseUrl}/products`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
+  const res = await fetch(`${BaseUrl}/products`, {
+    next: { revalidate: 300 },
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch product prices');
@@ -33,39 +29,48 @@ const Marquee = async () => {
   const data: TProduct[] = await res.json();
 
   return (
-    <div className="overflow-hidden bg-base-300 py-2">
+    <div className="w-full overflow-hidden bg-base-300 py-2 sm:py-2.5">
       <MarqueeText direction="right" duration={15}>
         {data.map((product) => {
           const unit =
             units[product.unit.toLowerCase()] ?? product.unit;
 
           return (
-            <Link key={product.id} href={`/productDietels/${product.id}`}>
-            <div
-              
-              className="mx-6 flex items-center gap-2 whitespace-nowrap"
+            <Link
+              key={product.id}
+              href={`/productDietels/${product.id}`}
+              className="inline-flex"
             >
-              <span>{product.image}</span>
+              <div className="mx-3 sm:mx-4 md:mx-6 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap text-xs sm:text-sm md:text-base">
+                <span className="text-sm sm:text-base">
+                  {product.image}
+                </span>
 
-              <span className="font-medium text-gray-800">
-                {product.nameBn}
-              </span>
+                <span className="font-medium text-gray-800">
+                  {product.nameBn}
+                </span>
 
-              <span className="font-bold text-gray-900">
-                ৳{product.today.toLocaleString('bn-BD')}/{unit}
-              </span>
+                <span className="font-bold text-gray-900">
+                  ৳{product.today.toLocaleString('bn-BD')}/{unit}
+                </span>
 
-              <span
-                className={
-                  product.change.dir === 'up'
-                    ? 'font-medium text-red-600'
-                    : product.change.dir === 'down' ? 'font-medium text-green-600'  : 'font-medium'
-                }
-              >
-                {product.change.dir === 'up' ? '▲' : product.change.dir === "down" ? '▼' : "-"}
-                {product.change.pct.toLocaleString('bn-BD')}%
-              </span>
-            </div>
+                <span
+                  className={
+                    product.change.dir === 'up'
+                      ? 'font-medium text-red-600'
+                      : product.change.dir === 'down'
+                        ? 'font-medium text-green-600'
+                        : 'font-medium'
+                  }
+                >
+                  {product.change.dir === 'up'
+                    ? '▲'
+                    : product.change.dir === 'down'
+                      ? '▼'
+                      : '-'}
+                  {product.change.pct.toLocaleString('bn-BD')}%
+                </span>
+              </div>
             </Link>
           );
         })}

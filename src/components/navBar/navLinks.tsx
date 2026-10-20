@@ -21,19 +21,23 @@ const NavLinks = async () => {
   const data: TNavLinks[] = await res.json();
 
   return (
-    <div className="bg-base-200 mt-5">
-      <div className="flex gap-8 p-4 container mx-auto">
-        {data.map((d) => (
-          <div key={d.id}>
-            <Link
-              className="flex gap-1"
-              href={`/category/${d.slug}`}
-            >
-              <p>{d.icon}</p>
-              <p>{d.nameBn}</p>
-            </Link>
-          </div>
-        ))}
+    <div className="bg-base-200 mt-4 sm:mt-5 w-full">
+      <div className="container mx-auto w-full px-3 sm:px-4">
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-8 p-3 sm:p-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+
+          {data.map((d) => (
+            <div key={d.id} className="shrink-0">
+              <Link
+                className="flex items-center gap-1.5 text-sm sm:text-base transition-colors hover:text-green-600"
+                href={`/category/${d.slug}`}
+              >
+                <span>{d.icon}</span>
+                <span>{d.nameBn}</span>
+              </Link>
+            </div>
+          ))}
+
+        </div>
       </div>
     </div>
   );

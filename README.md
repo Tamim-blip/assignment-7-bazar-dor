@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর — Bazar Dor
 
-## Getting Started
+### Your Everyday Market Price Companion 🇧🇩
 
-First, run the development server:
+**বাজার দর (Bazar Dor)** is a Bengali-language market price tracking web application designed to help people in Bangladesh explore everyday product prices, compare market rates, and make informed shopping decisions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌟 Overview
 
-To learn more about Next.js, take a look at the following resources:
+Bazar Dor aims to make everyday market price information more accessible to Bangladeshi consumers through a clean, responsive, and Bengali-friendly interface.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Users can browse essential products, explore product details, compare price changes over time, and review available market price ranges.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project is built using modern web technologies, with a focus on usability, responsive design, and a localized experience for Bangladeshi users.
 
-## Deploy on Vercel
+## ✨ Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 📊 **Product Price Tracking** — Explore prices of everyday essential products.
+- 📈 **Price Change Indicators** — Identify price increases, decreases, and unchanged prices.
+- 🗓️ **Price History Comparison** — Compare current prices with previous periods.
+- 🏪 **Market Price Comparison** — Explore available minimum and maximum market prices.
+- 🔎 **Product Details** — View detailed information about individual products.
+- 🗂️ **Category Navigation** — Browse products by category.
+- ↕️ **Price Sorting** — Sort products by price.
+- 🔐 **User Authentication** — Register and sign in to access account features.
+- 👤 **User Profile** — Access profile information and account actions.
+- 📱 **Responsive Design** — Optimized for mobile, tablet, and desktop screens.
+- 🇧🇩 **Bengali-Friendly Interface** — Bengali text, localized number formatting, and Bangladeshi Taka (৳).
+- ⏳ **Loading & Not-Found Pages** — Dedicated loading states and a custom 404 experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js](https://nextjs.org/) | React framework and App Router |
+| [React](https://react.dev/) | Building interactive user interfaces |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety and maintainable code |
+| [Tailwind CSS](https://tailwindcss.com/) | Responsive styling |
+| [DaisyUI](https://daisyui.com/) | UI styling and theme utilities |
+| [Better Auth](https://www.better-auth.com/) | User authentication |
+| [MongoDB](https://www.mongodb.com/) | Database technology used for authentication |
+| JavaScript Fetch API | Retrieving application data |
+
+
+## 🔮 Future Improvements
+
+Potential improvements for future releases:
+
+- [ ] Search products by name
+- [ ] Filter products by category and price range
+- [ ] Interactive price history charts
+- [ ] Market location selection
+- [ ] Favorite products and personalized watchlists
+- [ ] Price-drop notifications
+- [ ] Improved accessibility
+- [ ] Automated testing and improved error handling
+
+## 👨‍💻 Author
+
+**MD Tamim Islam**
+
+- GitHub: [@Tamim-blip](https://github.com/Tamim-blip)
+
+---
+
+<p align="center">
+  Made with ❤️ in Bangladesh 🇧🇩
+  <br />
+  <strong>বাজার দর — প্রতিদিনের বাজারের দাম এক নজরে</strong>
+</p>

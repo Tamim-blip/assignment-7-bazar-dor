@@ -43,17 +43,33 @@ export default function SignUp() {
   };
 
   const HandleGoogleSignIn = async () => {
-    await signIn.social({
+    const {data, error} = await signIn.social({
       provider: 'google',
       callbackURL: '/',
     });
+
+    if(data){
+      toast.success("Sign in with Google successful")
+    }
+
+    if(error){
+      toast.error(error.message || 'Something went wrong')
+    }
   };
 
   const HandleGitHubSignIn = async () => {
-    await signIn.social({
+   const {data, error} = await signIn.social({
       provider: 'github',
       callbackURL: '/',
     });
+
+    if(data){
+      toast.success("Sign in with GitHub successful")
+    }
+
+    if(error){
+      toast.error(error.message || 'Something went wrong')
+    }
   };
 
   return (

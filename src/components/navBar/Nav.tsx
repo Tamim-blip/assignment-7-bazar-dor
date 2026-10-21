@@ -5,6 +5,7 @@ import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const NavBarPage = () => {
   const { data: session } = useSession();
@@ -23,6 +24,19 @@ const NavBarPage = () => {
   const HandleButton = () => {
     setClick(!click);
   };
+
+
+  const HandleSignOut = async () => {
+  const { error } = await signOut();
+
+  if (error) {
+    toast.error(error.message || "Something is wrong!");
+    return;
+  }
+
+  setClick(false);
+  toast.success("Sign out successful");
+};
 
   return (
     <div className="container mx-auto mt-3 sm:mt-5 w-full px-3 sm:px-4">
@@ -97,7 +111,7 @@ const NavBarPage = () => {
                   </Link>
 
                   <button
-                    onClick={() => signOut()}
+                    onClick={HandleSignOut}
                     className="mt-3 text-red-500 cursor-pointer"
                   >
                     ↩ সাইন আউট
